@@ -35,7 +35,7 @@ jobs:
     - name: Download Godot Editor
       run: |
         if [ ! -f /usr/local/bin/godot ]; then
-          curl -L --retry 5 --retry-delay 5 \
+          curl -L --http1.1 --retry 5 --retry-delay 5 \
             -o godot.zip \
             ${GODOT_BASE_URL}/${GODOT_VERSION}-${GODOT_CHANNEL}/Godot_v${GODOT_VERSION}-${GODOT_CHANNEL}_linux.x86_64.zip
           unzip godot.zip
@@ -48,7 +48,7 @@ jobs:
         TEMPLATE_PATH="$HOME/.local/share/godot/export_templates/${GODOT_VERSION}.${GODOT_CHANNEL}"
         mkdir -p ~/.local/share/godot/export_templates
         if [ ! -d "$TEMPLATE_PATH" ]; then
-          curl -L --retry 5 --retry-delay 5 \
+          curl -L --http1.1 --retry 5 --retry-delay 5 \
             -o templates.tpz \
             ${GODOT_BASE_URL}/${GODOT_VERSION}-${GODOT_CHANNEL}/Godot_v${GODOT_VERSION}-${GODOT_CHANNEL}_export_templates.tpz
           unzip templates.tpz
